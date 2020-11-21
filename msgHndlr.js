@@ -427,6 +427,15 @@ module.exports = msgHandler = async (client, message) => {
                 client.sendFile(from, './media/img/tutod.jpg', 'Tutor.jpg', 'Neh contoh mhank!', id)
             }
             break
+		case '!spamcall':
+	   if (args.length === 1) return client.reply(from,`Kirim perintah !call [nomor]\nContoh : !call 888xxxx`,id)
+const nomor = args[1]
+const spam = await get.get("https://id.jagreward.com/member/verify-mobile/"+nomor).json()
+if (spam.result == 1){
+ client.reply(from,`Spam berhasil`,id)
+} else {
+ client.reply(from,`Spam gagal`,id)
+break
         case '!quotemaker':
             arg = body.trim().split('|')
             if (arg.length >= 4) {
